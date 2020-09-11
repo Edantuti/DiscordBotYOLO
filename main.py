@@ -27,7 +27,7 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print("Logged in as"+str(bot.user.name)+str(bot.user.id))
-    Activity(name="a!help", type=ActivityType.playing)
+    await bot.change_presence(activity=Activity(name="a!help", type=ActivityType.playing))
 
 #Error heading
 @bot.event
