@@ -1,4 +1,4 @@
-Hello everyone!
+###Hello everyone!
 This is a bot made for my discord server "YOLO". 
 
 What does it do?
