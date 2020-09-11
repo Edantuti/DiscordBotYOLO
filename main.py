@@ -5,22 +5,22 @@ import requests
 from discord.ext import commands
 from discord import Embed, Color
 import os
-
+#Get constants from .env file
 headers_cookie = os.environ.get("HEADER_COOKIE")
 cookie = os.environ.get("COOKIE")
 ASEC = os.environ.get("ASEC")
 api = os.environ.get("API")
-
+#aternos server object
 server = AternosAPI(headers_cookie, cookie, ASEC)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('a!'))
-
+#removing the default help function
 bot.remove_command('help')
-
+#Gives response on the console when the bot is ready
 @bot.event
 async def on_ready():
   print("Logged in as"+str(bot.user.name)+str(bot.user.id))
-
+#Error heading
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
@@ -29,12 +29,12 @@ async def on_command_error(ctx, error):
     else:
         embed=Embed(title="Wrong Command", color=Color.dark_teal())
         await ctx.send(embed=embed)
-
+#just to check whether the bot is good
 @bot.command()
 async def hello(ctx):
     embed=Embed(title="hello", color=Color.green())
     await ctx.send(embed=embed)
-
+#Command that actually starts the server
 @bot.command()
 async def start(ctx):
     server.StartServer()
@@ -47,19 +47,20 @@ async def start(ctx):
             if server.GetStatus() == 'Online':
                 embed = Embed(title="Bhau server online hai", color=Color.blue())
                 await ctx.send(embed=embed)
-
+#Command that stops the server
 @bot.command()
 async def stop(ctx):
     embed=Embed(title=server.StopServer(), color=Color.blue())
     await ctx.send(embed=embed)
     await ctx.send(str(ctx.author.mention))
-
+#Command that gives of the server
 @bot.command()
 async def status(ctx):
     embed=Embed(title=server.GetStatus(), color=Color.blue())
     await ctx.send(embed=embed)
     await ctx.send(ctx.author.mention)
 
+#Command which gives random headlines from the Indian news pages
 @bot.command()
 async def headlines(ctx):
     data = requests.get(url="https://newsapi.org/v2/top-headlines?country=in&apiKey="+api).json()
@@ -69,7 +70,7 @@ async def headlines(ctx):
     url=headlines[number]['urlToImage']
     embed.set_image(url=url)
     await ctx.send(embed=embed)
-
+#Command which provides news for particular topic
 @bot.command()
 async def sources(ctx, arg):
     data = requests.get(url="https://newsapi.org/v2/everything?q="+arg+"&apiKey="+api).json()
@@ -79,7 +80,7 @@ async def sources(ctx, arg):
     url=sources[number]['urlToImage']
     embed.set_image(url=url)
     await ctx.send(embed=embed)
-
+#Command which provides all the commands that are present in the code
 @bot.command()
 async def help(ctx):
     embed=Embed(title='Helps/commands of the '+(bot.user.name), description="This Bot is made By Edantuti.",color=Color.dark_blue())
