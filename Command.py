@@ -14,6 +14,7 @@ class Command(commands.Cog):
   @commands.group(name='news', invoke_without_command=True)
   async def newshelp(self, ctx):
     await ctx.send('a!news headlines: For the top Headlines\na!news sources: Provides sources')
+    
   @newshelp.command(name='headlines')
   async def headlines(self, ctx):
     data = requests.get(url="https://newsapi.org/v2/top-headlines?country=in&apiKey="+api).json()
@@ -23,6 +24,7 @@ class Command(commands.Cog):
     url=headlines[number]['urlToImage']
     embed.set_image(url=url)
     await ctx.send(embed=embed)
+
   @newshelp.command(name='sources')
   async def sources(self, ctx, arg):
     data = requests.get(url="https://newsapi.org/v2/everything?q="+arg+"&apiKey="+api).json()

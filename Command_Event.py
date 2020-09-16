@@ -5,8 +5,6 @@ from random import randint
 from discord import Activity, ActivityType
 from discord import Embed, Color, Member
 
-
-
 class Command_Event(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
