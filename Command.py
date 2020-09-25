@@ -2,8 +2,10 @@ from discord.ext import commands
 import requests
 from os import environ
 from random import randint
-from discord import Activity, ActivityType
+from sayTime import sayTime
 from discord import Embed, Color, Member
+
+s = sayTime()
 
 api = environ.get('API')
 
@@ -26,8 +28,8 @@ class Command(commands.Cog):
     await ctx.send(embed=embed)
 
   @newshelp.command(name='sources')
-  async def sources(self, ctx, arg):
-    data = requests.get(url="https://newsapi.org/v2/everything?q="+arg+"&apiKey="+api).json()
+  async def sources(self, ctx, *arg):
+    data = requests.get(url="https://newsapi.org/v2/everything?q="+"+".join(arg[:])+"&from="+str(s.sayWeek())+"&to="+str(s.sayToday())+"&sortBy=relevancy&apiKey="+api).json()
     sources = data['articles']
     number=randint(0, len(sources)-1)
     embed=Embed(title=sources[number]['title'], url=sources[number]['url'], color=Color.red())
