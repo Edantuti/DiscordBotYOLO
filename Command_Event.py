@@ -1,9 +1,5 @@
 from discord.ext import commands
-import requests
-from os import environ
-from random import randint
-from discord import Activity, ActivityType
-from discord import Embed, Color, Member
+from discord import Embed, Color
 
 class Command_Event(commands.Cog):
   def __init__(self, bot):

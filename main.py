@@ -8,7 +8,7 @@ import time
 from discord.ext import commands
 from discord import CustomActivity, ActivityType, Activity
 from discord import Guild
-from discord import Embed, Color
+from discord import Embed, Color, Game, Status
 import os
 
 #Get constants from .env file
@@ -24,6 +24,10 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('a!'))
 #removing the default help function
 
 bot.remove_command('help')
+
+@bot.event
+async def on_ready():
+  await bot.change_presence(status=Status.idle, activity=Game(name="with Discord members", type=3))
 
 #Command which provides all the commands that are present in the code
 @bot.command()

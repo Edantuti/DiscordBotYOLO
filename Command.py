@@ -3,7 +3,7 @@ import requests
 from os import environ
 from random import randint
 from sayTime import sayTime
-from discord import Embed, Color, Member
+from discord import Embed, Color
 
 s = sayTime()
 
@@ -36,6 +36,18 @@ class Command(commands.Cog):
     url=sources[number]['urlToImage']
     embed.set_image(url=url)
     await ctx.send(embed=embed)
+  @newshelp.command(name='search')
+  async def search(self, ctx, *arg):
+    data = requests.get(url="https://newsapi.org/v2/everything?q="+"+".join(arg[:])+"&from="+str(s.sayWeek())+"&to="+str(s.sayToday())+"&sortBy=relevancy&apiKey="+api).json()
+    search = data['articles']
+    embed=Embed(title="These are the Search Results:", color=Color.red())
+    embed.add_field(name='\n\u200b', value='\n\u200b', inline=False)
+    for article in search:
+      embed.add_field(name=article['title'], value=article['url'], inline=False)
+      embed.add_field(name='\n\u200b', value='\n\u200b', inline=False)
+    
+    await ctx.send(embed=embed)
+
   
 
 def setup(bot):
