@@ -25,7 +25,7 @@ class Server_Command(commands.Cog):
           await ctx.send(embed=Embed(title=server.GetStatus(), color=Color.green()))
   @serverhelp.command(name='stop')
   async def stop(self, ctx):
-    await ctx.send(embed=Embed(title=server.GetStatus(), color=Color.green()))
+    await ctx.send(embed=Embed(title=server.StopServer(), color=Color.green()))
   @serverhelp.command(name='status')
   async def status(self, ctx):
     await ctx.send(embed=Embed(title=server.GetStatus(), color=Color.green()))
