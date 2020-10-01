@@ -34,8 +34,8 @@ async def on_ready():
 async def help(ctx):
     embed=Embed(title='Helps/commands of the '+(bot.user.name), description="This Bot is made By Edantuti.",color=Color.dark_blue())
     embed.set_author(name="Developer:Edan Solomon Tuti", url='https://github.com/Edantuti/DiscordBotYOLO')
-    embed.add_field(name='News:', value='The command for news:\na!headlines-To show the top headlines in India.\na!sources <query>-To get the news for specific topic.', inline=True)
-    embed.add_field(name='Aternos Minecraft:', value='The commands: \na!start-To start the server.\na!stop-To stop the server.\na!status-To get the status of the server.', inline=True)
+    embed.add_field(name='News:', value='The command for news:\na!news headlines-To show the top headlines in India.\na!news sources <query>-To get the news for specific topic.', inline=True)
+    embed.add_field(name='Aternos Minecraft:', value='The commands: \na!server start-To start the server.\na!server stop-To stop the server.\na!server status-To get the status of the server.', inline=True)
     await ctx.send(embed=embed)
 
 extensions = ['Command', 'Command_Event', 'Server_Command']
