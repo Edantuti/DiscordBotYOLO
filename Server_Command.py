@@ -19,7 +19,6 @@ class Server_Command(commands.Cog):
     await ctx.send(embed=Embed(title='a!server start: to start the server.\n a!server stop: to stop the server.\n a!server status: to get the status of the server.',color=Color.green()))
   @serverhelp.command(name='start')
   async def start(self, ctx, arg):
-    print(type(arg))
     if arg == "1":
       server.StartServer()
       if server.GetStatus() == 'Online':
