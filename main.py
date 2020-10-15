@@ -1,13 +1,7 @@
 #Adding all the necessary functions from the packages
 from keep_alive import keep_alive
 from aternosapi import AternosAPI
-from random2 import randint
-import requests
-import threading
-import time
 from discord.ext import commands
-from discord import CustomActivity, ActivityType, Activity
-from discord import Guild
 from discord import Embed, Color, Game, Status
 import os
 
@@ -34,7 +28,7 @@ async def on_ready():
 async def help(ctx):
     embed=Embed(title='Helps/commands of the '+(bot.user.name), description="This Bot is made By Edantuti.",color=Color.dark_blue())
     embed.set_author(name="Developer:Edan Solomon Tuti", url='https://github.com/Edantuti/DiscordBotYOLO')
-    embed.add_field(name='News:', value='The command for news:\na!news headlines-To show the top headlines in India.\na!news sources <query>-To get the news for specific topic.', inline=True)
+    embed.add_field(name='News:', value='The command for news:\na!news headlines-To show the top headlines in India.\na!news sources <query>-To get the news for specific topic.\na!news search <query>-To get the news for the specific topic from varies webstie.', inline=True)
     embed.add_field(name='Aternos Minecraft:', value='The commands: \na!server start-To start the server.\na!server stop-To stop the server.\na!server status-To get the status of the server.', inline=True)
     await ctx.send(embed=embed)
 
